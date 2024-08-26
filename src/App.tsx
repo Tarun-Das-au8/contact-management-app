@@ -2,7 +2,6 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import "leaflet/dist/leaflet.css";
 
 import Contact from "./pages/Contact";
 import ChartsMaps from "./pages/ChartsMaps";
