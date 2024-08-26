@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="w-full bg-gray-800 text-white p-4">
-      <div className="text-center text-3xl font-bold">{title}</div>
+      <div className="text-center text-lg md:text-3xl font-bold">{title}</div>
     </header>
   );
 };

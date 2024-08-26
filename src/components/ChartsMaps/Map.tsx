@@ -28,39 +28,42 @@ const Map: React.FC = () => {
   if (error) return <div>Error fetching map data</div>;
 
   return (
-    <MapContainer
-      // @ts-ignore
-      center={center as [number, number]}
-      zoom={zoom as number}
-      style={{ height: "500px", width: "100%" }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <div className="relative w-full h-96 md:h-[500px]">
+      <MapContainer
+        // @ts-ignore
+        center={center as [number, number]}
+        zoom={zoom as number}
+        style={{ height: "100%", width: "100%" }}
+        className="rounded-lg shadow-lg"
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      {/* Map through country data and place markers */}
-      {data.map((country: any) => (
-        <Marker
-          key={country.countryInfo.iso2}
-          position={[country.countryInfo.lat, country.countryInfo.long]}
-        >
-          <Popup>
-            <div>
-              <h2 className="text-xl text-blue-800 font-medium">
-                {country.country}
-              </h2>
-              <p>
-                <strong>Active:</strong> {country.active}
-              </p>
-              <p>
-                <strong>Recovered:</strong> {country.recovered}
-              </p>
-              <p>
-                <strong>Deaths:</strong> {country.deaths}
-              </p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+        {/* Map through country data and place markers */}
+        {data.map((country: any) => (
+          <Marker
+            key={country.countryInfo.iso2}
+            position={[country.countryInfo.lat, country.countryInfo.long]}
+          >
+            <Popup>
+              <div>
+                <h2 className="text-xl text-blue-800 font-medium">
+                  {country.country}
+                </h2>
+                <p>
+                  <strong>Active:</strong> {country.active}
+                </p>
+                <p>
+                  <strong>Recovered:</strong> {country.recovered}
+                </p>
+                <p>
+                  <strong>Deaths:</strong> {country.deaths}
+                </p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const WorldwideCovidData: React.FC = () => {
   if (error) return <div>Error fetching data</div>;
 
   return (
-    <div className="p-8 bg-gray-100 h-80">
+    <div className="p-4 md:p-8 bg-gray-100 md:h-80">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white p-6 shadow rounded-lg text-center">
           <h3 className="text-xl font-semibold">Total Cases</h3>

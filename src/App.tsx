@@ -25,7 +25,7 @@ const App: React.FC = () => {
             <Header />
             <div className="flex flex-1">
               <Sidebar />
-              <div className="flex-1 p-8">
+              <div className="flex-1 p-4 md:p-8">
                 <Routes>
                   <Route path="/" element={<Contact />} />
                   <Route path="/charts-maps" element={<ChartsMaps />} />

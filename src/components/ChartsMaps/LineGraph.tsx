@@ -44,7 +44,11 @@ const LineGraph: React.FC = () => {
     ],
   };
 
-  return <Line data={chartData} />;
+  return (
+    <div className="w-full h-96 md:h-[500px]">
+      <Line data={chartData} options={{ maintainAspectRatio: false }} />
+    </div>
+  );
 };
 
 export default LineGraph;
