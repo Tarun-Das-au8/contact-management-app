@@ -1,12 +1,12 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useQuery } from "react-query";
-import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { fetchCountryData } from "../../utils/apis";
 
 // Leaflet marker icon fix for React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -17,14 +17,11 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-const fetchCountryData = async () => {
-  const { data } = await axios.get("https://disease.sh/v3/covid-19/countries");
-  return data;
-};
-
 const Map: React.FC = () => {
-  const center: [number, number] = [51.505, -0.09];
-  const zoom: number = 3;
+  const center: [number, number] = [51.505, -0.09]; // Default center of the map
+  const zoom: number = 3; // Default zoom level
+
+  // Fetch data with react-query
   const { data, isLoading, error } = useQuery("countryData", fetchCountryData);
 
   if (isLoading) return <div>Loading map...</div>;
@@ -38,6 +35,8 @@ const Map: React.FC = () => {
       style={{ height: "500px", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+      {/* Map through country data and place markers */}
       {data.map((country: any) => (
         <Marker
           key={country.countryInfo.iso2}

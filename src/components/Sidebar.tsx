@@ -6,7 +6,9 @@ const Sidebar: React.FC = () => {
     <aside className="w-64 bg-gray-800 text-white">
       <nav>
         <ul className="space-y-2">
+          {/* List item for the Contact page */}
           <li>
+            {/* NavLink for the Contact page with dynamic classes based on active state */}
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -20,6 +22,7 @@ const Sidebar: React.FC = () => {
               Contact
             </NavLink>
           </li>
+          {/* List item for the Charts & Maps page */}
           <li>
             <NavLink
               to="/charts-maps"

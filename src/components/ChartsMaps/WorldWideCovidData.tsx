@@ -1,19 +1,18 @@
 import React from "react";
 import { useQuery } from "react-query";
-import axios from "axios";
-
-const fetchWorldwideData = async () => {
-  const { data } = await axios.get("https://disease.sh/v3/covid-19/all");
-  return data;
-};
+import { fetchWorldwideData } from "../../utils/apis";
 
 const WorldwideCovidData: React.FC = () => {
+  // Fetch worldwide COVID data using React Query
   const { data, isLoading, error } = useQuery(
     "worldwideData",
     fetchWorldwideData
   );
 
+  // Loading state while data is being fetched
   if (isLoading) return <div>Loading data...</div>;
+
+  // Error state in case of any issues while fetching data
   if (error) return <div>Error fetching data</div>;
 
   return (

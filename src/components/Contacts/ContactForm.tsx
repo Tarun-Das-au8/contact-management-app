@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact, updateContact } from "../../redux/contactsSlice";
 
+// Define the props for the ContactForm component
 interface ContactFormProps {
   existingContact?: {
     id: number;
@@ -9,7 +10,7 @@ interface ContactFormProps {
     lastName: string;
     status: boolean;
   };
-  onClose: () => void;
+  onClose: () => void; // Function to close the form/modal
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
@@ -26,8 +27,10 @@ const ContactForm: React.FC<ContactFormProps> = ({
     existingContact?.status || true
   );
 
+  // Get the dispatch function from Redux to dispatch actions
   const dispatch = useDispatch();
 
+  // Effect to initialize form fields if an existing contact is provided
   useEffect(() => {
     if (existingContact) {
       setFirstName(existingContact.firstName);
@@ -38,18 +41,23 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Create a new contact object or update the existing one
     const newContact = {
-      id: existingContact?.id || Date.now(),
+      id: existingContact?.id || Date.now(), // Use existing contact ID or generate a new one
       firstName,
       lastName,
       status,
     };
+
+    // Dispatch either an update or add action based on the presence of an existing contact
     if (existingContact) {
       dispatch(updateContact(newContact));
     } else {
       dispatch(addContact(newContact));
     }
-    onClose();
+
+    onClose(); // Close the form/modal after submitting
   };
 
   return (

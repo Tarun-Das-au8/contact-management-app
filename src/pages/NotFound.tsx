@@ -10,6 +10,7 @@ const NotFound: React.FC = () => {
       <p className="text-lg font-medium my-4">
         The page you're looking for doesn't exist.
       </p>
+      {/** navigate to contact page on button click */}
       <button
         onClick={() => navigate("/")}
         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"

@@ -3,18 +3,25 @@ import Modal from "react-modal";
 import ContactForm from "../components/Contacts/ContactForm";
 import ContactList from "../components/Contacts/ContactList";
 
+// Set the root element for accessibility (required for react-modal)
 Modal.setAppElement("#root");
 
 const Contact: React.FC = () => {
+  // State to track whether the modal is open or closed
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  // State to track the selected contact for editing
   const [selectedContact, setSelectedContact] = useState<any>(null);
 
+  // Function to open the modal
   const openModal = () => setModalIsOpen(true);
+
+  // Function to close the modal and reset selected contact
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedContact(null);
   };
 
+  // Function to handle editing a contact by opening the modal and setting the selected contact
   const handleEdit = (contact: any) => {
     setSelectedContact(contact);
     openModal();
@@ -30,6 +37,7 @@ const Contact: React.FC = () => {
           Create Contact
         </button>
       </div>
+      {/* Modal for creating or editing contacts */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -49,9 +57,11 @@ const Contact: React.FC = () => {
               X
             </button>
           </div>
+          {/* ContactForm component for creating or updating a contact */}
           <ContactForm existingContact={selectedContact} onClose={closeModal} />
         </div>
       </Modal>
+      {/* ContactList component to display all contacts with the ability to edit */}
       <ContactList onEdit={handleEdit} />
     </div>
   );

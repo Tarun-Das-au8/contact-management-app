@@ -10,12 +10,16 @@ import Header from "./components/Header";
 import NotFound from "./pages/NotFound";
 import store from "./redux/store";
 
+// Create a new instance of QueryClient, which will handle caching and fetching in react-query
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
   return (
+    // Wrap the app in Redux Provider to make the Redux store available to all components
     <Provider store={store}>
+      {/* Wrap the app in QueryClientProvider to provide react-query context */}
       <QueryClientProvider client={queryClient}>
+        {/* Use React Router for navigation within the app */}
         <Router>
           <div className="flex flex-col h-screen">
             <Header />
