@@ -2,6 +2,8 @@
 
 This is a contact management application built with ReactJS, TypeScript, TailwindCSS, React Router v6, and React Query. The app features a contact management system and a dashboard with charts and maps to visualize COVID-19 data.
 
+<a href="https://docs.google.com/document/d/1V60I7yAzEDUhiANOv1Wa6K178ZZbhP-9LDiY8igwLNc/edit?usp=sharing" target="blank">Documentation</a>
+
 ## Features
 
 ### Contacts Page
